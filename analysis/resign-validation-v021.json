@@ -1,0 +1,32 @@
+{
+  "unsigned_slices": [
+    {
+      "member": "Payload/Snapchat.app/Frameworks/CydiaSubstrate.framework/CydiaSubstrate",
+      "slice": 0,
+      "file_bytes": 374664,
+      "last_string_table_ends_at_eof": true,
+      "linkedit_ends_at_eof": true
+    },
+    {
+      "member": "Payload/Snapchat.app/SKEngine.dylib",
+      "slice": 0,
+      "file_bytes": 354720,
+      "last_string_table_ends_at_eof": true,
+      "linkedit_ends_at_eof": true
+    },
+    {
+      "member": "Payload/Snapchat.app/SKEngine.dylib",
+      "slice": 1,
+      "file_bytes": 370992,
+      "last_string_table_ends_at_eof": true,
+      "linkedit_ends_at_eof": true
+    }
+  ],
+  "unchanged_profile_framework": true,
+  "checks": [
+    "Independent code-signature audit reports all three targeted slices unsigned.",
+    "No symbol table or LINKEDIT content is truncated.",
+    "SCRT profile patch remains byte-identical."
+  ],
+  "native_codesign_or_ios_installation_tested": false
+}

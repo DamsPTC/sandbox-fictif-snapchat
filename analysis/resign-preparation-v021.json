@@ -1,0 +1,89 @@
+{
+  "source_sha256": "1aa15e724ee46b9170b4b8a98fa67a6ce86c1422b28e026543aaa6c8b6551f95",
+  "output_filename": "Sandbox_iPhone12mini_resign_v021.ipa",
+  "output_sha256": "27073a52d57004729be1b5dff473e837d7dfce829e38dea5d9767dcc2a3301f7",
+  "output_bytes": 197286306,
+  "modified_members": [
+    {
+      "member": "Payload/Snapchat.app/Frameworks/CydiaSubstrate.framework/CydiaSubstrate",
+      "original_sha256": "a1d7f23bedb4508cc5332caa8c1fa2b0826da4e85b763217ffe5b5e8f8dfe54f",
+      "output_sha256": "0cd3a49be2b8e1ad27052c2d33d672bff4ad2eeb30f52ff327cb0df714fb2b08",
+      "slices": [
+        {
+          "architecture": "arm64",
+          "cpu_subtype": 0,
+          "original_bytes": 416691,
+          "output_bytes": 374664,
+          "removed_bytes": 42027,
+          "sections_preserved": 32,
+          "original_signature_offset": 374672,
+          "original_signature_bytes": 42010,
+          "output_has_code_signature": false,
+          "virtual_layout_unchanged": true,
+          "symbols_and_dependencies_unchanged": true
+        }
+      ]
+    },
+    {
+      "member": "Payload/Snapchat.app/SKEngine.dylib",
+      "original_sha256": "8a9ed3123b64d7c0d1a9daff6312c64c8006de2a34f97a7e5b6185c035116204",
+      "output_sha256": "3455d36aad25b3e7f22e2ceab3d37ff76dbd8c21455ecf5b62b5652d1ed3c26b",
+      "slices": [
+        {
+          "architecture": "arm64",
+          "cpu_subtype": 0,
+          "original_bytes": 379296,
+          "output_bytes": 354720,
+          "removed_bytes": 24576,
+          "sections_preserved": 30,
+          "original_signature_offset": 354720,
+          "original_signature_bytes": 24576,
+          "output_has_code_signature": false,
+          "virtual_layout_unchanged": true,
+          "symbols_and_dependencies_unchanged": true,
+          "fat_index": 0,
+          "fat_offset_unchanged": 16384
+        },
+        {
+          "architecture": "arm64",
+          "cpu_subtype": 2147483650,
+          "original_bytes": 395568,
+          "output_bytes": 370992,
+          "removed_bytes": 24576,
+          "sections_preserved": 32,
+          "original_signature_offset": 370992,
+          "original_signature_bytes": 24576,
+          "output_has_code_signature": false,
+          "virtual_layout_unchanged": true,
+          "symbols_and_dependencies_unchanged": true,
+          "fat_index": 1,
+          "fat_offset_unchanged": 409600
+        }
+      ]
+    }
+  ],
+  "removed_members": [
+    "Payload/Snapchat.app/Frameworks/CydiaSubstrate.framework/_CodeSignature/",
+    "Payload/Snapchat.app/Frameworks/CydiaSubstrate.framework/_CodeSignature/CodeResources",
+    "Payload/Snapchat.app/_CodeSignature/",
+    "Payload/Snapchat.app/_CodeSignature/CodeResources"
+  ],
+  "verification": {
+    "all_member_crcs_checked": true,
+    "unchanged_members": 8494,
+    "all_target_sections_unchanged": true,
+    "architectures_preserved": true,
+    "profile_patch_unchanged": true,
+    "devicecheck_unchanged": true,
+    "signed_ipa_validated": false,
+    "ios_installation_tested": false
+  },
+  "requires_complete_resigning": true,
+  "limitations": [
+    "Experimental preparation for re-signing, not an installable or Apple-signed IPA.",
+    "Only two libraries have their stale signatures removed; other existing signatures still require re-signing.",
+    "No signing key, certificate or provisioning profile from the user's Signulous download is included.",
+    "No change to instructions, app behavior, DeviceCheck, App Attest, or the v0.2.0 profile patch.",
+    "Whether Signulous now processes these libraries must be checked in the next signed output."
+  ]
+}

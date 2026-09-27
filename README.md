@@ -10,6 +10,15 @@ Le propriétaire décrit son objectif comme une application Snapchat simulée, r
 
 La version `v0.1.0-audit` conserve l'original et fournit une base d'audit. Une version expérimentale `v0.2.0-profile-test` modifie maintenant les constantes de profil dans `SCRT` ; elle doit être resignée et n'a pas été exécutée sur iOS. L'efficacité d'un éventuel mécanisme SS06 n'a pas été testée.
 
+## Nouvel essai de signature — v0.2.1
+
+La release **`v0.2.1-resign-prep`** fournit `Sandbox_iPhone12mini_resign_v021.ipa`.
+Elle retire les anciennes signatures de CydiaSubstrate et de SKEngine pour
+préparer une nouvelle ressignature complète. Les bibliothèques, leurs sections
+et le profil iPhone 12 mini sont conservés. **Cette IPA doit être resignée ;
+l'installation n'est pas encore validée.** Voir la
+[procédure et les limites](docs/RESIGN_PREPARATION.md).
+
 ## Profil iPhone 12 mini — version expérimentale
 
 La release **`v0.2.0-profile-test`** contient `Sandbox_iPhone12mini_test_a_resigner.ipa`, le relevé des modifications et ses empreintes.
