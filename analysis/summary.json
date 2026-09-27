@@ -1,0 +1,140 @@
+{
+  "input_file": "Snapchat_unban_SS06.ipa",
+  "size_bytes": 493368978,
+  "sha256": "07765d546d122056e985d05d7673f6d2424007f9b69747688769fee7452cad0d",
+  "source_url": "https://neriostore.com/api/download/Snapchat_unban_SS06.ipa",
+  "archive_entries": 8500,
+  "regular_files": 8130,
+  "extracted_bytes": 491177448,
+  "macho_files": 12,
+  "architecture_slices": 13,
+  "disassembly_requested": true,
+  "bundle_info": {
+    "Payload/Snapchat.app/PlugIns/ScreenCaptureExtension.appex/Info.plist": {
+      "CFBundleDisplayName": "Snapchat",
+      "CFBundleName": "ScreenCaptureExtension",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06.screencapture",
+      "CFBundleExecutable": "ScreenCaptureExtension",
+      "CFBundleShortVersionString": "12.81.0",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "12.4"
+    },
+    "Payload/Snapchat.app/PlugIns/SnapchatHomeScreenWidget.appex/Info.plist": {
+      "CFBundleDisplayName": "SnapchatHomeScreenWidget",
+      "CFBundleName": "SnapchatHomeScreenWidget",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06.homeWidget",
+      "CFBundleExecutable": "SnapchatHomeScreenWidget",
+      "CFBundleShortVersionString": "12.81.0",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "14.0"
+    },
+    "Payload/Snapchat.app/PlugIns/SnapchatLocationPushExtension.appex/Info.plist": {
+      "CFBundleDisplayName": "SnapchatLocationPushExtension",
+      "CFBundleName": "SnapchatLocationPushExtension",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06.locationpushservice",
+      "CFBundleExecutable": "SnapchatLocationPushExtension",
+      "CFBundleShortVersionString": "12.81.0",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "15.0"
+    },
+    "Payload/Snapchat.app/PlugIns/SnapchatShareExt.appex/Info.plist": {
+      "CFBundleDisplayName": "Snapchat",
+      "CFBundleName": "SnapchatShareExt",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06.share",
+      "CFBundleExecutable": "SnapchatShareExt",
+      "CFBundleShortVersionString": "12.81.0",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "12.4"
+    },
+    "Payload/Snapchat.app/PlugIns/SnapchatIntentsExtension.appex/Info.plist": {
+      "CFBundleDisplayName": "SnapchatIntentsExtension",
+      "CFBundleName": "SnapchatIntentsExtension",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06.intents",
+      "CFBundleExecutable": "SnapchatIntentsExtension",
+      "CFBundleShortVersionString": "12.81.0",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "14.0"
+    },
+    "Payload/Snapchat.app/PlugIns/SnapchatNotificationServiceExt.appex/Info.plist": {
+      "CFBundleDisplayName": "SnapchatNotificationServiceExt",
+      "CFBundleName": "SnapchatNotificationServiceExt",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06.notification",
+      "CFBundleExecutable": "SnapchatNotificationServiceExt",
+      "CFBundleShortVersionString": "12.81.0",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "12.4"
+    },
+    "Payload/Snapchat.app/Mapbox.bundle/Info.plist": {
+      "CFBundleDisplayName": null,
+      "CFBundleName": "Mapbox",
+      "CFBundleIdentifier": "com.mapbox.Mapbox",
+      "CFBundleExecutable": null,
+      "CFBundleShortVersionString": "5.9.0",
+      "CFBundleVersion": "15256",
+      "MinimumOSVersion": "9.0"
+    },
+    "Payload/Snapchat.app/Frameworks/ExtensionsSharedDependencies.framework/Info.plist": {
+      "CFBundleDisplayName": "ExtensionsSharedDependencies",
+      "CFBundleName": "ExtensionsSharedDependencies",
+      "CFBundleIdentifier": "com.toyopagroup.shared.ExtensionsSharedDependencies",
+      "CFBundleExecutable": "ExtensionsSharedDependencies",
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleVersion": "1.0",
+      "MinimumOSVersion": "12.4"
+    },
+    "Payload/Snapchat.app/Frameworks/SCRT.framework/Info.plist": {
+      "CFBundleDisplayName": null,
+      "CFBundleName": "SCRT",
+      "CFBundleIdentifier": "com.samsoffes.SCRT",
+      "CFBundleExecutable": "SCRT",
+      "CFBundleShortVersionString": "1.5.3",
+      "CFBundleVersion": "1",
+      "MinimumOSVersion": "16.0"
+    },
+    "Payload/Snapchat.app/Frameworks/CydiaSubstrate.framework/Info.plist": {
+      "CFBundleDisplayName": null,
+      "CFBundleName": "Cydia Substrate",
+      "CFBundleIdentifier": "com.saurik.CydiaSubstate",
+      "CFBundleExecutable": "CydiaSubstrate",
+      "CFBundleShortVersionString": "0.9",
+      "CFBundleVersion": null,
+      "MinimumOSVersion": null
+    },
+    "Payload/Snapchat.app/Frameworks/snappy.framework/Info.plist": {
+      "CFBundleDisplayName": null,
+      "CFBundleName": "snappy",
+      "CFBundleIdentifier": "com.dbug.snappy",
+      "CFBundleExecutable": "snappy",
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleVersion": "1",
+      "MinimumOSVersion": "16.0"
+    },
+    "Payload/Snapchat.app/Base.lproj/LaunchScreen.storyboardc/Info.plist": {
+      "CFBundleDisplayName": null,
+      "CFBundleName": null,
+      "CFBundleIdentifier": null,
+      "CFBundleExecutable": null,
+      "CFBundleShortVersionString": null,
+      "CFBundleVersion": null,
+      "MinimumOSVersion": null
+    },
+    "Payload/Snapchat.app/Info.plist": {
+      "CFBundleDisplayName": "Snapchat",
+      "CFBundleName": "Snapchat",
+      "CFBundleIdentifier": "app.neriostore.snapchatunbanss06",
+      "CFBundleExecutable": "Snapchat",
+      "CFBundleShortVersionString": "13.67.1",
+      "CFBundleVersion": "12.81.0.47",
+      "MinimumOSVersion": "10.0"
+    }
+  },
+  "limitations": [
+    "Static analysis only; no runtime behavior or server ownership verified.",
+    "Linear disassembly is not source code or a rebuildable project.",
+    "Strings and dependencies do not prove a feature is active.",
+    "No encrypted code is decrypted; declared encrypted byte ranges are skipped."
+  ],
+  "derived_macho_files": 1,
+  "total_macho_files_including_derived": 13,
+  "total_architecture_slices_including_derived": 14
+}

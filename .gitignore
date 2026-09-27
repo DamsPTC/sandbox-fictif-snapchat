@@ -1,0 +1,10 @@
+artifacts/
+extracted/
+decoded/
+disassembly/
+analysis/strings/
+analysis/symbols/
+analysis/archive-files.tsv
+__pycache__/
+.venv/
+*.part
