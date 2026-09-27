@@ -1,0 +1,24 @@
+{
+  "source_release": "v0.1.0-audit",
+  "output_sha256": "1aa15e724ee46b9170b4b8a98fa67a6ce86c1422b28e026543aaa6c8b6551f95",
+  "whole_archive_changed_bytes": 48,
+  "all_changed_bytes_within_declared_patch_ranges": true,
+  "user_agent_objects": [
+    {
+      "cfstring_offset": "0xbaf50",
+      "target_offset": "0x9da2a",
+      "length": 47,
+      "value": "Snapchat/%@ Beta (iPhone13,1; iOS 17.4.1; gzip)"
+    },
+    {
+      "cfstring_offset": "0xbaf70",
+      "target_offset": "0x9da2a",
+      "length": 47,
+      "value": "Snapchat/%@ Beta (iPhone13,1; iOS 17.4.1; gzip)"
+    }
+  ],
+  "old_iphone_x_profile_strings_absent_from_scrt": true,
+  "already_patched_input_rejected_without_output": true,
+  "resigning_required": true,
+  "ios_runtime_tested": false
+}

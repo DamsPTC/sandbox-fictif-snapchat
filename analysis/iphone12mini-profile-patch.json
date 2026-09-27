@@ -1,0 +1,110 @@
+{
+  "profile": {
+    "name": "iPhone 12 mini — profil expérimental",
+    "model_identifier": "iPhone13,1",
+    "serial": "LAB12M000002",
+    "serial_is_synthetic": true,
+    "ios_version": "17.4.1",
+    "build": "21E236",
+    "scope": [
+      "SCRT user-agent constants",
+      "SCRT exemption-list constants"
+    ],
+    "changes_apple_devicecheck_identity": false
+  },
+  "source_sha256": "07765d546d122056e985d05d7673f6d2424007f9b69747688769fee7452cad0d",
+  "output_sha256": "1aa15e724ee46b9170b4b8a98fa67a6ce86c1422b28e026543aaa6c8b6551f95",
+  "output_filename": "Sandbox_iPhone12mini_test_a_resigner.ipa",
+  "output_bytes": 493368978,
+  "modified_member": "Payload/Snapchat.app/Frameworks/SCRT.framework/SCRT",
+  "original_member_sha256": "8e928a6c91e6ffa32cafb0ad07d9caa3e260d8597b99bc71bb61cf1fbb2387a9",
+  "patched_member_sha256": "ba89f32231c6430708cf0cd0032b47b2235f9ca976eff300f6ad9f3e8e9c3eff",
+  "binary_patches": [
+    {
+      "label": "exemption model",
+      "kind": "cstring",
+      "offset": 534965,
+      "before_hex": "6950686f6e6531302c3300",
+      "after_hex": "6950686f6e6531332c3100",
+      "before": "iPhone10,3",
+      "after": "iPhone13,1"
+    },
+    {
+      "label": "exemption serial",
+      "kind": "cstring",
+      "offset": 534952,
+      "before_hex": "433339565741454c4a434c4600",
+      "after_hex": "4c414231324d30303030303200",
+      "before": "C39VWAELJCLF",
+      "after": "LAB12M000002"
+    },
+    {
+      "label": "exemption build A",
+      "kind": "cstring",
+      "offset": 534976,
+      "before_hex": "32304831313500",
+      "after_hex": "32314532333600",
+      "before": "20H115",
+      "after": "21E236"
+    },
+    {
+      "label": "exemption build B",
+      "kind": "cstring",
+      "offset": 534983,
+      "before_hex": "32304833363400",
+      "after_hex": "32314532333600",
+      "before": "20H364",
+      "after": "21E236"
+    },
+    {
+      "label": "user agent",
+      "kind": "cstring",
+      "offset": 645674,
+      "before_hex": "536e6170636861742f2540204265746120286950686f6e6531302c333b20694f532031362e372e31323b20677a69702900",
+      "after_hex": "536e6170636861742f2540204265746120286950686f6e6531332c313b20694f532031372e342e313b20677a6970290000",
+      "before": "Snapchat/%@ Beta (iPhone10,3; iOS 16.7.12; gzip)",
+      "after": "Snapchat/%@ Beta (iPhone13,1; iOS 17.4.1; gzip)"
+    },
+    {
+      "label": "user agent CFString length",
+      "kind": "cfstring_length",
+      "offset": 765832,
+      "before_hex": "3000000000000000",
+      "after_hex": "2f00000000000000"
+    },
+    {
+      "label": "legacy UA CFString target",
+      "kind": "cfstring_redirect",
+      "offset": 765792,
+      "before_hex": "d7d9090000002000",
+      "after_hex": "2ada090000002000"
+    },
+    {
+      "label": "legacy UA CFString length",
+      "kind": "cfstring_redirect",
+      "offset": 765800,
+      "before_hex": "2e00000000000000",
+      "after_hex": "2f00000000000000"
+    }
+  ],
+  "zip_crc_offsets": [
+    484738504,
+    493286594
+  ],
+  "zip_member_data_offset": 484738599,
+  "verification": {
+    "crc_verified_for_all_members": true,
+    "unchanged_archive_members": 8499,
+    "instruction_bytes_unchanged": true,
+    "macho_metadata_unchanged": true,
+    "ios_runtime_tested": false,
+    "server_requests_observed": false
+  },
+  "requires_resigning": true,
+  "limitations": [
+    "Serial/model/build constants belong to an exemption list, not a hardware identity provider.",
+    "Both User-Agent CFString objects point to the iPhone12mini template; the unused legacy literal remains in storage.",
+    "No Apple DeviceCheck or App Attest token is created or modified.",
+    "Existing code signatures are invalid after patching; re-sign the complete app before installation."
+  ]
+}

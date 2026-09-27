@@ -1,0 +1,10 @@
+{
+  "name": "iPhone 12 mini — profil expérimental",
+  "model_identifier": "iPhone13,1",
+  "serial": "LAB12M000002",
+  "serial_is_synthetic": true,
+  "ios_version": "17.4.1",
+  "build": "21E236",
+  "scope": ["SCRT user-agent constants", "SCRT exemption-list constants"],
+  "changes_apple_devicecheck_identity": false
+}

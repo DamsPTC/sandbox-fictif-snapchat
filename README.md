@@ -8,7 +8,19 @@ Le propriétaire décrit son objectif comme une application Snapchat simulée, r
 
 ** les requêtes sont envoyés vers une faux serveur de sandbox Snapchat et non a Snapchat ** L'IPA contient des composants identifiés Snapchat, des références à des domaines Snapchat, des bibliothèques ajoutées et un binaire encodé. Le nom de ce dépôt désigne le projet de simulation 
 
-Cette première version conserve l'original et fournit une base d'audit. L'IPA n'a pas été exécuté, nettoyé, corrigé, resigné ou recompilé. L'efficacité d'un éventuel mécanisme SS06 n'a pas été testée.
+La version `v0.1.0-audit` conserve l'original et fournit une base d'audit. Une version expérimentale `v0.2.0-profile-test` modifie maintenant les constantes de profil dans `SCRT` ; elle doit être resignée et n'a pas été exécutée sur iOS. L'efficacité d'un éventuel mécanisme SS06 n'a pas été testée.
+
+## Profil iPhone 12 mini — version expérimentale
+
+La release **`v0.2.0-profile-test`** contient `Sandbox_iPhone12mini_test_a_resigner.ipa`, le relevé des modifications et ses empreintes.
+
+- Les deux chemins de construction du `User-Agent` utilisent `iPhone13,1` / iOS `17.4.1`.
+- La liste d'exemptions interne utilise le modèle `iPhone13,1`, le numéro **fictif** `LAB12M000002` et le build `21E236`.
+- Le patch conserve les instructions exécutables et les 8 499 autres entrées de l'archive à l'identique.
+
+**Ce n'est pas un changement de l'identité matérielle ni du jeton Apple DeviceCheck.** La constante de numéro de série appartient à une liste d'exemptions ; elle n'est pas une implémentation de spoofing du numéro transmis au serveur. L'IPA modifiée conserve des signatures devenues invalides et nécessite une ressignature complète avant installation.
+
+Le [détail du patch](docs/DEVICE_PROFILE.md), le [profil utilisé](profiles/iphone12mini-test.json) et le [rapport binaire](analysis/iphone12mini-profile-patch.json) précisent la portée et les vérifications.
 
 ## Fichiers à télécharger
 
