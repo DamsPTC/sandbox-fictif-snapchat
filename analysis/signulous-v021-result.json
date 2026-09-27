@@ -1,0 +1,40 @@
+{
+  "signed_output_sha256": "e719c7ada405e3bb67ecbd973a5ded19bb6218e9d9b2db42528a5d060409b0ca",
+  "signed_output_bytes": 214709162,
+  "http_last_modified_utc": "2026-09-27T20:55:24Z",
+  "mach_o_files": 12,
+  "slices_signed": 11,
+  "slices_unsigned": 2,
+  "page_hash_checks": 52268,
+  "resource_hash_checks": 17135,
+  "hash_mismatches": [],
+  "unsigned_libraries": [
+    {
+      "path": "Payload/Snapchat.app/SKEngine.dylib",
+      "slice": 0
+    },
+    {
+      "path": "Payload/Snapchat.app/SKEngine.dylib",
+      "slice": 1
+    }
+  ],
+  "cms_math_valid_for_all_signed_slices": true,
+  "target_frameworks": {
+    "Payload/Snapchat.app/Frameworks/SCRT.framework/SCRT": {
+      "signed": true,
+      "matches_main_signing_team": true,
+      "cms_math_valid": true,
+      "all_checked_hashes_match": true
+    },
+    "Payload/Snapchat.app/Frameworks/CydiaSubstrate.framework/CydiaSubstrate": {
+      "signed": true,
+      "matches_main_signing_team": true,
+      "cms_math_valid": true,
+      "all_checked_hashes_match": true
+    }
+  },
+  "limitations": [
+    "Apple trust, revocation, device policy, DER entitlement semantics and runtime not verified.",
+    "Nested code requirements are reported, not evaluated as Apple designated requirements."
+  ]
+}

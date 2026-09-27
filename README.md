@@ -10,6 +10,17 @@ Le propriétaire décrit son objectif comme une application Snapchat simulée, r
 
 La version `v0.1.0-audit` conserve l'original et fournit une base d'audit. Une version expérimentale `v0.2.0-profile-test` modifie maintenant les constantes de profil dans `SCRT` ; elle doit être resignée et n'a pas été exécutée sur iOS. L'efficacité d'un éventuel mécanisme SS06 n'a pas été testée.
 
+## SKEngine sous forme de framework — v0.2.2
+
+Le contrôle de la sortie Signulous v0.2.1 confirme que CydiaSubstrate a été
+resigné correctement, mais que les deux architectures de `SKEngine.dylib`
+sont restées sans signature. La version **`v0.2.2-skengine-framework`** place
+cette bibliothèque dans `Frameworks/SKEngine.framework` et corrige ses chemins
+de chargement pour un nouvel essai. Les sections de code et de données restent
+identiques. Télécharger `Sandbox_iPhone12mini_framework_v022.ipa` puis le faire
+resigner entièrement. **La sortie Signulous de cette version et son installation
+sur iPhone restent à tester.** Voir le [diagnostic et le détail](docs/SKENGINE_FRAMEWORK.md).
+
 ## Nouvel essai de signature — v0.2.1
 
 La release **`v0.2.1-resign-prep`** fournit `Sandbox_iPhone12mini_resign_v021.ipa`.

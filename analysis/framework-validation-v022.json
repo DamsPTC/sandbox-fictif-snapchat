@@ -1,0 +1,30 @@
+{
+  "raw_load_command_checks": [
+    {
+      "member": "Payload/Snapchat.app/Snapchat",
+      "slice": 0,
+      "load_command_bounds_valid": true,
+      "path": "@rpath/SKEngine.framework/SKEngine",
+      "has_existing_signature": true
+    },
+    {
+      "member": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+      "slice": 0,
+      "load_command_bounds_valid": true,
+      "path": "@rpath/SKEngine.framework/SKEngine",
+      "has_existing_signature": false
+    },
+    {
+      "member": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+      "slice": 1,
+      "load_command_bounds_valid": true,
+      "path": "@rpath/SKEngine.framework/SKEngine",
+      "has_existing_signature": false
+    }
+  ],
+  "framework_resolves_from_app_rpath": true,
+  "old_root_library_absent": true,
+  "scrt_cydiasubstrate_and_app_plist_unchanged": true,
+  "ios_installation_tested": false,
+  "requires_complete_resigning": true
+}

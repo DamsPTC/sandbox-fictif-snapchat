@@ -1,0 +1,61 @@
+{
+  "source_sha256": "27073a52d57004729be1b5dff473e837d7dfce829e38dea5d9767dcc2a3301f7",
+  "output_filename": "Sandbox_iPhone12mini_framework_v022.ipa",
+  "output_sha256": "3cd1f09f17abc56894bb278654761abc85a8accf87ed1270d58842a536619f23",
+  "output_bytes": 197286803,
+  "changes": [
+    {
+      "member": "Payload/Snapchat.app/Snapchat",
+      "load_command_offset": 14208,
+      "command": "0x80000018",
+      "old_path": "@executable_path/SKEngine.dylib",
+      "new_path": "@rpath/SKEngine.framework/SKEngine",
+      "header_padding_used": 8,
+      "sections_identical": 50,
+      "all_other_bytes_identical": true
+    },
+    {
+      "member": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+      "slice": 0,
+      "load_command_offset": 2880,
+      "command": "0xd",
+      "old_path": "/Library/MobileSubstrate/DynamicLibraries/SKEngine.dylib",
+      "new_path": "@rpath/SKEngine.framework/SKEngine",
+      "header_padding_used": 0,
+      "sections_identical": 30,
+      "all_other_bytes_identical": true
+    },
+    {
+      "member": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+      "slice": 1,
+      "load_command_offset": 3040,
+      "command": "0xd",
+      "old_path": "/Library/MobileSubstrate/DynamicLibraries/SKEngine.dylib",
+      "new_path": "@rpath/SKEngine.framework/SKEngine",
+      "header_padding_used": 0,
+      "sections_identical": 32,
+      "all_other_bytes_identical": true
+    }
+  ],
+  "moved_library": {
+    "from": "Payload/Snapchat.app/SKEngine.dylib",
+    "to": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine"
+  },
+  "added_info_plist": "Payload/Snapchat.app/Frameworks/SKEngine.framework/Info.plist",
+  "verification": {
+    "all_member_crcs_checked": true,
+    "unchanged_members": 8494,
+    "all_sections_preserved": true,
+    "architectures_preserved": true,
+    "scrt_and_profile_patch_unchanged": true,
+    "signulous_output_checked": false,
+    "ios_installation_tested": false
+  },
+  "requires_complete_resigning": true,
+  "limitations": [
+    "Experimental framework packaging; Signulous processing must be checked next.",
+    "The app's old signature is invalidated by the load-path change and must be replaced.",
+    "No instruction or data section changes, and no DeviceCheck/App Attest changes.",
+    "No personal Signulous certificate, key or profile is copied into this IPA."
+  ]
+}
