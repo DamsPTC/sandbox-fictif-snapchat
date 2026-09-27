@@ -10,6 +10,17 @@ Le propriétaire décrit son objectif comme une application Snapchat simulée, r
 
 La version `v0.1.0-audit` conserve l'original et fournit une base d'audit. Une version expérimentale `v0.2.0-profile-test` modifie maintenant les constantes de profil dans `SCRT` ; elle doit être resignée et n'a pas été exécutée sur iOS. L'efficacité d'un éventuel mécanisme SS06 n'a pas été testée.
 
+## Essai de signature ARM64 — v0.2.3
+
+La sortie Signulous v0.2.2 laisse encore SKEngine sans signature, même sous
+forme de framework. C'est le seul binaire universel ARM64 + ARM64e ; les onze
+autres binaires, tous ARM64 simples, ont été resignés. La version expérimentale
+**`v0.2.3-arm64-signing`** conserve uniquement la tranche ARM64 existante de
+SKEngine, octet pour octet, afin de tester cette différence. Le reste de l'IPA
+reste identique à v0.2.2. Télécharger `Sandbox_iPhone12mini_arm64_v023.ipa`
+et lancer une nouvelle signature complète. **La cause dans Signulous et
+l'installation ne sont pas confirmées.** Voir [l'essai ARM64](docs/ARM64_SIGNING_TEST.md).
+
 ## SKEngine sous forme de framework — v0.2.2
 
 Le contrôle de la sortie Signulous v0.2.1 confirme que CydiaSubstrate a été
@@ -18,8 +29,8 @@ sont restées sans signature. La version **`v0.2.2-skengine-framework`** place
 cette bibliothèque dans `Frameworks/SKEngine.framework` et corrige ses chemins
 de chargement pour un nouvel essai. Les sections de code et de données restent
 identiques. Télécharger `Sandbox_iPhone12mini_framework_v022.ipa` puis le faire
-resigner entièrement. **La sortie Signulous de cette version et son installation
-sur iPhone restent à tester.** Voir le [diagnostic et le détail](docs/SKENGINE_FRAMEWORK.md).
+resigner entièrement. **Résultat du contrôle suivant : Signulous n'a pas signé
+SKEngine dans cette version.** Voir le [diagnostic et le détail](docs/SKENGINE_FRAMEWORK.md).
 
 ## Nouvel essai de signature — v0.2.1
 

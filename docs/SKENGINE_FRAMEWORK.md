@@ -2,6 +2,11 @@
 
 Version expérimentale : `v0.2.2-skengine-framework`.
 
+**Résultat du contrôle suivant :** le changement de chemin et le framework sont
+bien présents dans la sortie Signulous, mais les deux tranches de SKEngine
+restent sans signature. L'essai suivant isole sa tranche ARM64 ; voir
+[ARM64_SIGNING_TEST.md](ARM64_SIGNING_TEST.md).
+
 ## Résultat du nouvel essai Signulous v0.2.1
 
 Le lien fourni le 27 septembre 2026 sert cette fois une nouvelle IPA de

@@ -1,0 +1,31 @@
+{
+  "source_sha256": "3cd1f09f17abc56894bb278654761abc85a8accf87ed1270d58842a536619f23",
+  "output_filename": "Sandbox_iPhone12mini_arm64_v023.ipa",
+  "output_sha256": "1a49dd5de3fa3cac878dad4c38ba900b096df797b3acad39d19968b241b4f59f",
+  "output_bytes": 197243358,
+  "modified_member": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+  "old_binary_sha256": "a86f711efbda2e102872d4e04293f0d4176925787672db482a73080027bf6610",
+  "new_binary_sha256": "b8d3be0d1f251c7b65a834a3cc5fb6a4963d13473be2794ed0b26388d474d1b7",
+  "source_slice_index": 0,
+  "source_slice_offset": 16384,
+  "old_binary_bytes": 780592,
+  "new_binary_bytes": 354720,
+  "kept_architecture": "arm64",
+  "removed_architecture": "arm64e",
+  "verification": {
+    "extracted_slice_byte_identical": true,
+    "all_other_members_identical": 8496,
+    "all_member_crcs_checked": true,
+    "permissions_and_timestamps_preserved": true,
+    "app_load_path_and_framework_info_unchanged": true,
+    "signulous_output_checked": false,
+    "ios_installation_tested": false
+  },
+  "requires_complete_resigning": true,
+  "limitations": [
+    "This tests whether the universal binary format is why Signulous skips SKEngine.",
+    "The cause inside Signulous is not established; signing and installation are untested.",
+    "ARM64e is removed, not converted. The existing ARM64 slice is copied without edits.",
+    "No personal Signulous certificate, key or profile is added."
+  ]
+}

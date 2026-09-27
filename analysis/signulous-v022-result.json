@@ -1,0 +1,27 @@
+{
+  "signed_output_sha256": "62942468789929b5d7174a30f68aa15f1871a2eac1f57cad8d093e5634a80f9e",
+  "signed_output_bytes": 214709973,
+  "http_last_modified_utc": "2026-09-27T21:12:11Z",
+  "mach_o_files": 12,
+  "signed_slices": 11,
+  "unsigned_slices": [
+    {
+      "path": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+      "slice": 0
+    },
+    {
+      "path": "Payload/Snapchat.app/Frameworks/SKEngine.framework/SKEngine",
+      "slice": 1
+    }
+  ],
+  "page_hash_checks": 52268,
+  "resource_hash_checks": 17137,
+  "all_checked_hashes_match": true,
+  "cms_math_valid_for_all_signed_slices": true,
+  "skengine_framework_still_unsigned": true,
+  "signulous_cause_established": false,
+  "limitations": [
+    "Apple trust, revocation, device policy, DER entitlement semantics and runtime not verified.",
+    "Nested code requirements are reported, not evaluated as Apple designated requirements."
+  ]
+}
