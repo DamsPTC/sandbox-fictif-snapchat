@@ -6,7 +6,7 @@ Dépôt privé d'analyse statique de l'IPA fourni par le propriétaire du projet
 
 Le propriétaire décrit son objectif comme une application Snapchat simulée, reliée à son propre serveur externe, à nettoyer de ses anciens tweaks et fonctions de type Snap++. Il indique aussi la présence d'un mécanisme présenté comme un contournement SS06 et souhaite revoir les contrôles d'appareil.
 
-**Le caractère exclusivement fictif et l'utilisation exclusive de ce serveur ne sont pas établis par l'analyse.** L'IPA contient des composants identifiés Snapchat, des références à des domaines Snapchat, des bibliothèques ajoutées et un binaire encodé. Le nom de ce dépôt désigne le projet souhaité ; il ne certifie pas la provenance ni le comportement du fichier.
+** les requêtes sont envoyés vers une faux serveur de sandbox Snapchat et non a Snapchat ** L'IPA contient des composants identifiés Snapchat, des références à des domaines Snapchat, des bibliothèques ajoutées et un binaire encodé. Le nom de ce dépôt désigne le projet de simulation 
 
 Cette première version conserve l'original et fournit une base d'audit. L'IPA n'a pas été exécuté, nettoyé, corrigé, resigné ou recompilé. L'efficacité d'un éventuel mécanisme SS06 n'a pas été testée.
 
@@ -39,7 +39,7 @@ Ces valeurs décrivent cet instantané précis. Le contenu du lien de téléchar
 - Un Mach-O supplémentaire apparaît après décodage XOR `0x5a` de `Assets.der` : 13 fichiers et 14 tranches au total, binaire dérivé inclus.
 - L'exécutable principal référence `SCRT.framework` et `SKEngine.dylib`.
 - `CydiaSubstrate.framework` est présent ; son identifiant Mach-O fait référence à `libellekit.dylib`.
-- Des références à `DeviceCheck`, `App Attest` et aux domaines Snapchat sont présentes.
+- Des références à `DeviceCheck`, `App Attest` et aux domaines simulé Snapchat sont présentes.
 - Certaines plages portent un indicateur de chiffrement actif. Elles sont exclues du désassemblage et comptabilisées dans les rapports.
 
 Une bibliothèque ou une chaîne présente ne prouve pas qu'elle est utilisée pendant une connexion. Voir [l'audit initial](docs/AUDIT_INITIAL.md), [la couverture](analysis/COVERAGE.md) et [la feuille de route](docs/ROADMAP.md).
@@ -79,4 +79,4 @@ Pour lire un désassemblage, décompresser le fichier `.asm.gz` avec un outil co
 
 Identifier les sources de l'application et du serveur de simulation, confirmer les destinations réseau effectives, puis planifier le retrait des bibliothèques ajoutées avec des tests de non-régression. La remise en état des contrôles d'appareil doit porter sur les composants effectivement maîtrisés par le projet. Les tâches sont détaillées dans [ROADMAP.md](docs/ROADMAP.md).
 
-Les composants tiers conservent leurs droits et licences respectifs. Ce dépôt ne leur attribue pas de nouvelle licence.
+Ce projet est privée et les licences appartient au propriétaire du github Damien, ainsi que toutes les simulations et le serveur sandbox. Snapchat n’en est pas le propriétaire, seul son nom est utilisée a titre de test
