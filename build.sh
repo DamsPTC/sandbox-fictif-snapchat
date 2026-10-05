@@ -12,8 +12,10 @@ xcrun --sdk iphoneos clang \
     -arch arm64 -isysroot "$QA_SDK_PATH" \
     -miphoneos-version-min=12.0 \
     -dynamiclib -fobjc-arc -fblocks -O2 -Wall -Wextra \
+    -Wno-deprecated-declarations \
     -framework Foundation -framework UIKit \
     -framework AdSupport -framework Security \
+    -framework CoreTelephony -framework DeviceCheck \
     -Wl,-install_name,@executable_path/Frameworks/QAIdentity.dylib \
     -o build/QAIdentity.dylib QAIdentity.m
 xcrun lipo build/QAIdentity.dylib -verify_arch arm64
