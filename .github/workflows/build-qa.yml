@@ -1,0 +1,173 @@
+name: Build QA IPA (unsigned)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-qa:
+    runs-on: macos-15
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+      SOURCE_REPO: DamsPTC/sandbox-fictif-snapchat
+      RELEASE_TAG: nouvelle-version-14.25.0.48
+      INPUT_ASSET: com.toyopagroup.picaboo_14.25.0.48_und3fined.ipa
+      INPUT_SHA256: 008086080f7e0e1a0c9dda4d5bfa092b20f9192d3b1897bae33dec0c5e0acef1
+      INSERT_DYLIB_COMMIT: eb7278162af8fcc372e7f2946a2dee6a386b17d8
+
+    steps:
+      - name: Récupérer les fichiers du dépôt
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Télécharger, compiler, injecter et contrôler
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -Eeuo pipefail
+          trap 'qa_rc=$?; printf "::error::Commande échouée (code %s, ligne Bash %s).\n" "$qa_rc" "$LINENO"; exit "$qa_rc"' ERR
+
+          fail() {
+            printf '::error::%s\n' "$*" >&2
+            exit 1
+          }
+
+          verify_arm64() {
+            [[ -f "$1" ]] || fail "Binaire absent : $1"
+            xcrun lipo -verify_arch arm64 "$1" || fail "arm64 absent : $1"
+            xcrun lipo -info "$1"
+          }
+
+          verify_dependency() {
+            awk '$1 == "@executable_path/Frameworks/QAIdentity.dylib" { found=1 }
+                 END { exit !found }' "$1" \
+              || fail "Dépendance @executable_path/Frameworks/QAIdentity.dylib absente après injection."
+          }
+
+          inspect_ipa() {
+            local qa_ipa="$1" qa_phase="$2"
+            local qa_dir qa_app qa_exec qa_binary qa_enabled
+            local -a qa_apps
+            qa_dir="$(mktemp -d "$RUNNER_TEMP/qa-check.XXXXXX")"
+            ditto -x -k "$qa_ipa" "$qa_dir"
+            shopt -s nullglob
+            qa_apps=("$qa_dir"/Payload/*.app)
+            [[ ${#qa_apps[@]} -eq 1 ]] || fail "$qa_phase : une seule app principale est attendue."
+            qa_app="${qa_apps[0]}"
+            qa_exec="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$qa_app/Info.plist")"
+            [[ -n "$qa_exec" && "$qa_exec" != */* && "$qa_exec" != . && "$qa_exec" != .. ]] \
+              || fail "$qa_phase : CFBundleExecutable invalide."
+            qa_binary="$qa_app/$qa_exec"
+            verify_arm64 "$qa_binary"
+
+            xcrun otool -arch all -l "$qa_binary" > "$qa_dir/load-commands.txt"
+            awk '$1 == "cryptid" { print }' "$qa_dir/load-commands.txt"
+            awk '$1 == "cryptid" { seen=1; if ($2 != "0") bad=1 }
+                 END { exit !(seen && !bad) }' "$qa_dir/load-commands.txt" \
+              || fail "$qa_phase : cryptid absent ou différent de 0 ; IPA non validée comme déchiffrée."
+
+            if [[ "$qa_phase" == output ]]; then
+              verify_arm64 "$qa_app/Frameworks/QAIdentity.dylib"
+              cmp build/QAIdentity.dylib "$qa_app/Frameworks/QAIdentity.dylib" \
+                || fail "Le dylib embarqué diffère du dylib compilé."
+              xcrun otool -arch arm64 -L "$qa_binary" | tee "$qa_dir/dependencies.txt"
+              verify_dependency "$qa_dir/dependencies.txt"
+              qa_enabled="$(/usr/libexec/PlistBuddy -c 'Print :QAIdentityEnabled' "$qa_app/Info.plist")"
+              [[ "$qa_enabled" == true ]] || fail "QAIdentityEnabled n'est pas true dans l'IPA finale."
+            fi
+            printf 'Contrôles %s : OK\n' "$qa_phase"
+          }
+
+          echo '::group::Outils et fichiers validés'
+          [[ -d "$DEVELOPER_DIR" ]] || fail "Xcode 16.4 absent : $DEVELOPER_DIR"
+          for qa_tool in xcrun gh git ditto zip shasum; do
+            command -v "$qa_tool" >/dev/null 2>&1 || fail "Outil manquant : $qa_tool"
+          done
+          xcrun xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-path
+          # Empreintes des trois fichiers validés : aucune réécriture.
+          cat > "$RUNNER_TEMP/qa-sources.sha256" <<'SHA256'
+          22d0c8886e54b4e50fb31cf431c1a2410f2216c996753168d11f361fc54a6f58  QAIdentity.m
+          06dfe4cf132447ec844d0adcc939e082d386df4f50a6f8ef8c4d04b4535b3f7d  build.sh
+          732cf867f063e9cb14c30bd319c463690a4daedb83e73558eb280a1ee78077ab  inject.sh
+          SHA256
+          shasum -a 256 -c "$RUNNER_TEMP/qa-sources.sha256" \
+            || fail "Fichier validé absent ou modifié : QAIdentity.m, build.sh ou inject.sh."
+          echo '::endgroup::'
+
+          echo '::group::Téléchargement et intégrité de l’IPA d’entrée'
+          mkdir -p input
+          gh release download "$RELEASE_TAG" --repo "$SOURCE_REPO" \
+            --pattern "$INPUT_ASSET" --dir input
+          qa_input="input/$INPUT_ASSET"
+          qa_actual="$(shasum -a 256 "$qa_input" | awk '{print $1}')"
+          printf 'SHA-256 entrée : %s\n' "$qa_actual"
+          [[ "$qa_actual" == "$INPUT_SHA256" ]] \
+            || fail "SHA-256 non conforme : attendu $INPUT_SHA256 ; obtenu $qa_actual."
+          inspect_ipa "$qa_input" input
+          echo '::endgroup::'
+
+          echo '::group::Compilation du dylib arm64 / iOS 12.0'
+          bash build.sh || fail "build.sh a échoué ; consulter son erreur ci-dessus."
+          verify_arm64 build/QAIdentity.dylib
+          echo '::endgroup::'
+
+          echo '::group::Compilation de insert_dylib'
+          qa_insert_dir="$(mktemp -d "$RUNNER_TEMP/qa-insert-dylib.XXXXXX")"
+          git clone https://github.com/Tyilo/insert_dylib.git "$qa_insert_dir"
+          git -C "$qa_insert_dir" checkout --detach "$INSERT_DYLIB_COMMIT"
+          xcrun --sdk macosx clang -O2 "$qa_insert_dir/insert_dylib/main.c" \
+            -o "$qa_insert_dir/insert_dylib-tool"
+          export INSERT_DYLIB="$qa_insert_dir/insert_dylib-tool"
+          echo '::endgroup::'
+
+          echo '::group::Injection sans signature'
+          if ! bash inject.sh "$qa_input" build/QAIdentity.dylib QAIdentity-unsigned.ipa; then
+            # inject.sh conserve ces logs, y compris s'il échoue avant le ZIP.
+            shopt -s nullglob
+            for qa_log in "$PWD"/qaipa.*/main-dependencies-after.txt; do
+              cat "$qa_log"
+              verify_dependency "$qa_log"
+            done
+            fail "inject.sh a échoué ; consulter son erreur ci-dessus."
+          fi
+          echo '::endgroup::'
+
+          echo '::group::Contrôles de l’IPA finale et empreinte'
+          inspect_ipa QAIdentity-unsigned.ipa output
+          shasum -a 256 QAIdentity-unsigned.ipa | tee QAIdentity-unsigned.ipa.sha256
+          qa_output_sha="$(awk '{print $1}' QAIdentity-unsigned.ipa.sha256)"
+          echo '::endgroup::'
+
+          {
+            echo '## QAIdentity — IPA préparée pour signature externe'
+            echo
+            echo 'Fichier : `QAIdentity-unsigned.ipa`'
+            echo
+            printf 'SHA-256 final : `%s`\n\n' "$qa_output_sha"
+            printf 'SHA-256 entrée vérifié : `%s`\n\n' "$qa_actual"
+            echo '- cryptid = 0 sur le binaire principal, avant et après injection.'
+            echo '- arm64 présent dans le binaire principal et le dylib embarqué.'
+            echo '- Dépendance `@executable_path/Frameworks/QAIdentity.dylib` vérifiée avec `otool -L`.'
+            echo '- `QAIdentityEnabled = true` vérifié dans l’IPA finale.'
+            echo '- Les trois fichiers validés ont conservé leurs empreintes.'
+            echo '- Aucune étape de signature ; signature externe nécessaire.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publier l’IPA et son SHA-256 comme artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: QAIdentity-unsigned-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            QAIdentity-unsigned.ipa
+            QAIdentity-unsigned.ipa.sha256
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
