@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import <AdSupport/AdSupport.h>
 #import <Security/Security.h>
-#import <CoreTelephony/CoreTelephony.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <DeviceCheck/DeviceCheck.h>
 #import <objc/runtime.h>
 #import <dispatch/dispatch.h>
