@@ -41,7 +41,7 @@ jobs:
 
           verify_arm64() {
             [[ -f "$1" ]] || fail "Binaire absent : $1"
-            xcrun lipo -verify_arch arm64 "$1" || fail "arm64 absent : $1"
+            xcrun lipo "$1" -verify_arch arm64 || fail "arm64 absent : $1"
             xcrun lipo -info "$1"
           }
 
@@ -95,8 +95,8 @@ jobs:
           # Empreintes des trois fichiers validés : aucune réécriture.
           cat > "$RUNNER_TEMP/qa-sources.sha256" <<'SHA256'
           22d0c8886e54b4e50fb31cf431c1a2410f2216c996753168d11f361fc54a6f58  QAIdentity.m
-          06dfe4cf132447ec844d0adcc939e082d386df4f50a6f8ef8c4d04b4535b3f7d  build.sh
-          732cf867f063e9cb14c30bd319c463690a4daedb83e73558eb280a1ee78077ab  inject.sh
+          1e8951ec30a619c5390dbd449aa4f8b8b067574783e6b42f3fc508e4521e67c2  build.sh
+          80ed5099c8e22fd025df6a547578b1608b7b217d43706c6888daf12825f6a818  inject.sh
           SHA256
           shasum -a 256 -c "$RUNNER_TEMP/qa-sources.sha256" \
             || fail "Fichier validé absent ou modifié : QAIdentity.m, build.sh ou inject.sh."

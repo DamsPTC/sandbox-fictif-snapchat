@@ -37,8 +37,8 @@ QA_EXEC="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$QA_PLIST")"
     printf '%s\n' 'CFBundleExecutable invalide.' >&2; exit 1;
 }
 QA_BINARY="$QA_APP/$QA_EXEC"
-xcrun lipo -verify_arch arm64 "$QA_BINARY"
-xcrun lipo -verify_arch arm64 "$QA_LIBRARY"
+xcrun lipo "$QA_BINARY" -verify_arch arm64
+xcrun lipo "$QA_LIBRARY" -verify_arch arm64
 xcrun otool -l "$QA_BINARY" > "$QA_WORK/main-load-commands.txt"
 if awk '$1 == "cryptid" && $2 != "0" { found=1 } END { exit !found }' "$QA_WORK/main-load-commands.txt"; then
     printf '%s\n' 'Binaire déclaré chiffré : utiliser un export de développement non chiffré.' >&2

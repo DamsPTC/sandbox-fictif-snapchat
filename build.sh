@@ -16,5 +16,5 @@ xcrun --sdk iphoneos clang \
     -framework AdSupport -framework Security \
     -Wl,-install_name,@executable_path/Frameworks/QAIdentity.dylib \
     -o build/QAIdentity.dylib QAIdentity.m
-xcrun lipo -verify_arch arm64 build/QAIdentity.dylib
+xcrun lipo build/QAIdentity.dylib -verify_arch arm64
 printf '%s\n' 'Créé : build/QAIdentity.dylib (à signer avec l’app).'
